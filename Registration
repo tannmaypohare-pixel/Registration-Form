@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Registration</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 40px 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .registration-card {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+
+  .card-header-custom {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    padding: 30px 40px;
+    text-align: center;
+  }
+
+  .card-header-custom h2 {
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .card-header-custom p {
+    margin-bottom: 0;
+    opacity: 0.9;
+    font-size: 0.95rem;
+  }
+
+  .card-body-custom {
+    padding: 40px;
+  }
+
+  .form-label {
+    font-weight: 600;
+    color: #333;
+  }
+
+  .form-control, .form-select {
+    border-radius: 8px;
+    padding: 10px 14px;
+    border: 1px solid #d7d7e0;
+  }
+
+  .form-control:focus, .form-select:focus {
+    border-color: #764ba2;
+    box-shadow: 0 0 0 0.2rem rgba(118, 75, 162, 0.15);
+  }
+
+  .invalid-feedback {
+    font-size: 0.85rem;
+  }
+
+  .btn-register {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    padding: 12px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    border-radius: 8px;
+    color: #fff;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(118, 75, 162, 0.35);
+    color: #fff;
+  }
+
+  .gender-group {
+    display: flex;
+    gap: 25px;
+    padding-top: 6px;
+  }
+
+  .required-mark {
+    color: #e74c3c;
+  }
+
+  .password-strength {
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+
+  #formAlert {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div class="registration-card w-100">
+  <div class="card-header-custom">
+    <h2>Create Your Account</h2>
+    <p>Fill in the details below to get started!</p>
+  </div>
+
+  <div class="card-body-custom">
+
+    <div id="formAlert" class="alert alert-danger" role="alert"></div>
+
+    <form id="registrationForm" novalidate>
+
+      <!-- Name -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Full Name <span class="required-mark">*</span></label>
+        <input type="text" class="form-control" id="name" placeholder="Enter your full name">
+        <div class="invalid-feedback" id="nameError"></div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label for="email" class="form-label">Email Address <span class="required-mark">*</span></label>
+        <input type="text" class="form-control" id="email" placeholder="you@example.com">
+        <div class="invalid-feedback" id="emailError"></div>
+      </div>
+
+      <!-- Password -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label for="password" class="form-label">Password <span class="required-mark">*</span></label>
+          <input type="password" class="form-control" id="password" placeholder="Enter password">
+          <div class="invalid-feedback" id="passwordError"></div>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="col-md-6 mb-3">
+          <label for="confirmPassword" class="form-label">Confirm Password <span class="required-mark">*</span></label>
+          <input type="password" class="form-control" id="confirmPassword" placeholder="Re-enter password">
+          <div class="invalid-feedback" id="confirmPasswordError"></div>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="mb-3">
+        <label for="address" class="form-label">Address <span class="required-mark">*</span></label>
+        <textarea class="form-control" id="address" rows="3" placeholder="Enter your address"></textarea>
+        <div class="invalid-feedback" id="addressError"></div>
+      </div>
+
+      <!-- State -->
+      <div class="mb-3">
+        <label for="state" class="form-label">State <span class="required-mark">*</span></label>
+        <select class="form-select" id="state">
+          <option value="" selected disabled>-- Select State --</option>
+          <option>Andhra Pradesh</option>
+          <option>Arunachal Pradesh</option>
+          <option>Assam</option>
+          <option>Bihar</option>
+          <option>Chhattisgarh</option>
+          <option>Goa</option>
+          <option>Gujarat</option>
+          <option>Haryana</option>
+          <option>Himachal Pradesh</option>
+          <option>Jharkhand</option>
+          <option>Karnataka</option>
+          <option>Kerala</option>
+          <option>Madhya Pradesh</option>
+          <option>Maharashtra</option>
+          <option>Manipur</option>
+          <option>Meghalaya</option>
+          <option>Mizoram</option>
+          <option>Nagaland</option>
+          <option>Odisha</option>
+          <option>Punjab</option>
+          <option>Rajasthan</option>
+          <option>Sikkim</option>
+          <option>Tamil Nadu</option>
+          <option>Telangana</option>
+          <option>Tripura</option>
+          <option>Uttar Pradesh</option>
+          <option>Uttarakhand</option>
+          <option>West Bengal</option>
+          <option>Delhi</option>
+        </select>
+        <div class="invalid-feedback" id="stateError"></div>
+      </div>
+
+      <!-- Gender -->
+      <div class="mb-4">
+        <label class="form-label d-block">Gender <span class="required-mark">*</span></label>
+        <div class="gender-group">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Male">
+            <label class="form-check-label" for="genderMale">Male</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Female">
+            <label class="form-check-label" for="genderFemale">Female</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gender" id="genderOther" value="Other">
+            <label class="form-check-label" for="genderOther">Other</label>
+          </div>
+        </div>
+        <div class="invalid-feedback d-block" id="genderError"></div>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-register">Register</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('registrationForm');
+  const formAlert = document.getElementById('formAlert');
+
+  const fields = {
+    name: document.getElementById('name'),
+    email: document.getElementById('email'),
+    password: document.getElementById('password'),
+    confirmPassword: document.getElementById('confirmPassword'),
+    address: document.getElementById('address'),
+    state: document.getElementById('state')
+  };
+
+  const errors = {
+    name: document.getElementById('nameError'),
+    email: document.getElementById('emailError'),
+    password: document.getElementById('passwordError'),
+    confirmPassword: document.getElementById('confirmPasswordError'),
+    address: document.getElementById('addressError'),
+    state: document.getElementById('stateError'),
+    gender: document.getElementById('genderError')
+  };
+
+  function setError(fieldEl, errorEl, message) {
+    fieldEl.classList.add('is-invalid');
+    fieldEl.classList.remove('is-valid');
+    errorEl.textContent = message;
+  }
+
+  function setValid(fieldEl, errorEl) {
+    fieldEl.classList.remove('is-invalid');
+    fieldEl.classList.add('is-valid');
+    errorEl.textContent = '';
+  }
+
+  function validateName() {
+    const val = fields.name.value.trim();
+    if (val === '') {
+      setError(fields.name, errors.name, 'Name is required.');
+      return false;
+    }
+    if (val.length < 3) {
+      setError(fields.name, errors.name, 'Name must be at least 3 characters long.');
+      return false;
+    }
+    if (!/^[a-zA-Z\s.'-]+$/.test(val)) {
+      setError(fields.name, errors.name, 'Name should contain only letters and spaces.');
+      return false;
+    }
+    setValid(fields.name, errors.name);
+    return true;
+  }
+
+  function validateEmail() {
+    const val = fields.email.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (val === '') {
+      setError(fields.email, errors.email, 'Email is required.');
+      return false;
+    }
+    if (!emailRegex.test(val)) {
+      setError(fields.email, errors.email, 'Please enter a valid email address.');
+      return false;
+    }
+    setValid(fields.email, errors.email);
+    return true;
+  }
+
+  function validatePassword() {
+    const val = fields.password.value;
+    if (val === '') {
+      setError(fields.password, errors.password, 'Password is required.');
+      return false;
+    }
+    setValid(fields.password, errors.password);
+    return true;
+  }
+
+  function validateConfirmPassword() {
+    const val = fields.confirmPassword.value;
+    if (val === '') {
+      setError(fields.confirmPassword, errors.confirmPassword, 'Please confirm your password.');
+      return false;
+    }
+    if (val !== fields.password.value) {
+      setError(fields.confirmPassword, errors.confirmPassword, 'Passwords do not match.');
+      return false;
+    }
+    setValid(fields.confirmPassword, errors.confirmPassword);
+    return true;
+  }
+
+  function validateAddress() {
+    const val = fields.address.value.trim();
+    if (val === '') {
+      setError(fields.address, errors.address, 'Address is required.');
+      return false;
+    }
+    if (val.length < 10) {
+      setError(fields.address, errors.address, 'Address must be at least 10 characters long.');
+      return false;
+    }
+    setValid(fields.address, errors.address);
+    return true;
+  }
+
+  function validateState() {
+    const val = fields.state.value;
+    if (val === '' || val === null) {
+      setError(fields.state, errors.state, 'Please select your state.');
+      return false;
+    }
+    setValid(fields.state, errors.state);
+    return true;
+  }
+
+  function validateGender() {
+    const genderChecked = document.querySelector('input[name="gender"]:checked');
+    if (!genderChecked) {
+      errors.gender.textContent = 'Please select a gender.';
+      return false;
+    }
+    errors.gender.textContent = '';
+    return true;
+  }
+
+  // Real-time validation as the user types / interacts
+  fields.name.addEventListener('input', validateName);
+  fields.email.addEventListener('input', validateEmail);
+  fields.password.addEventListener('input', function () {
+    validatePassword();
+    if (fields.confirmPassword.value !== '') {
+      validateConfirmPassword();
+    }
+  });
+  fields.confirmPassword.addEventListener('input', validateConfirmPassword);
+  fields.address.addEventListener('input', validateAddress);
+  fields.state.addEventListener('change', validateState);
+  document.querySelectorAll('input[name="gender"]').forEach(function (el) {
+    el.addEventListener('change', validateGender);
+  });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    formAlert.style.display = 'none';
+
+    const isNameValid = validateName();
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+    const isConfirmPasswordValid = validateConfirmPassword();
+    const isAddressValid = validateAddress();
+    const isStateValid = validateState();
+    const isGenderValid = validateGender();
+
+    const isFormValid = isNameValid && isEmailValid && isPasswordValid &&
+      isConfirmPasswordValid && isAddressValid && isStateValid && isGenderValid;
+
+    if (!isFormValid) {
+      formAlert.textContent = 'Please fix the errors highlighted below before submitting.';
+      formAlert.style.display = 'block';
+      formAlert.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+
+    // Collect the data entered by the user
+    const genderValue = document.querySelector('input[name="gender"]:checked').value;
+    const userData = {
+      name: fields.name.value.trim(),
+      email: fields.email.value.trim(),
+      address: fields.address.value.trim(),
+      state: fields.state.value,
+      gender: genderValue
+    };
+
+    // Store minimal, non-sensitive data to greet the user on the welcome page
+    // (password is intentionally NOT stored)
+    sessionStorage.setItem('registeredUser', JSON.stringify(userData));
+
+    // Redirect to the Welcome page
+    window.location.href = 'welcome.html';
+  });
+});
+</script>
+
+</body>
+</html>
