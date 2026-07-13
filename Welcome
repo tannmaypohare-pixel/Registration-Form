@@ -96,7 +96,7 @@
     </tbody>
   </table>
 
-  <a href="registration.html" class="btn btn-back">Back to Form</a>
+  <a href="index.html" class="btn btn-back">Back to Form</a>
 </div>
 
 <script>
