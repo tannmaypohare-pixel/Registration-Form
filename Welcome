@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+  body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+  }
+
+  .welcome-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    max-width: 520px;
+    width: 100%;
+    padding: 50px 40px;
+    text-align: center;
+  }
+
+  .check-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px auto;
+  }
+
+  .check-icon svg {
+    width: 40px;
+    height: 40px;
+    fill: #fff;
+  }
+
+  .details-table {
+    text-align: left;
+    margin-top: 25px;
+  }
+
+  .details-table td {
+    padding: 8px 6px;
+  }
+
+  .details-table td:first-child {
+    font-weight: 600;
+    color: #555;
+    width: 40%;
+  }
+
+  .btn-back {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 28px;
+    border-radius: 8px;
+    margin-top: 25px;
+  }
+
+  .btn-back:hover {
+    color: #fff;
+    opacity: 0.9;
+  }
+</style>
+</head>
+<body>
+
+<div class="welcome-card">
+  <div class="check-icon">
+    <svg viewBox="0 0 24 24"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20 8l-1.4-1.4z"/></svg>
+  </div>
+
+  <h2 class="mb-2">Registration Successful!</h2>
+  <p class="text-muted" id="greeting">Welcome aboard!</p>
+
+  <table class="table details-table" id="detailsTable" style="display:none;">
+    <tbody>
+      <tr><td>Name</td><td id="dName"></td></tr>
+      <tr><td>Email</td><td id="dEmail"></td></tr>
+      <tr><td>Address</td><td id="dAddress"></td></tr>
+      <tr><td>State</td><td id="dState"></td></tr>
+      <tr><td>Gender</td><td id="dGender"></td></tr>
+    </tbody>
+  </table>
+
+  <a href="registration.html" class="btn btn-back">Back to Form</a>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const raw = sessionStorage.getItem('registeredUser');
+  if (raw) {
+    try {
+      const user = JSON.parse(raw);
+      document.getElementById('greeting').textContent = 'Welcome, ' + user.name + '!';
+      document.getElementById('dName').textContent = user.name;
+      document.getElementById('dEmail').textContent = user.email;
+      document.getElementById('dAddress').textContent = user.address;
+      document.getElementById('dState').textContent = user.state;
+      document.getElementById('dGender').textContent = user.gender;
+      document.getElementById('detailsTable').style.display = 'table';
+    } catch (e) {
+      // Fallback: keep generic welcome message
+    }
+  }
+});
+</script>
+
+</body>
+</html>
